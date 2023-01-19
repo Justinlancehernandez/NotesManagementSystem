@@ -1,6 +1,8 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +15,47 @@ namespace NotesManagementSystem.Controllers
     public class NoteController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        public NoteController(IUnitOfWork unitOfWork)
+        private readonly INoteService _noteService;
+        public NoteController(IUnitOfWork unitOfWork, INoteService noteService)
         {
             _unitOfWork = unitOfWork;
+            _noteService = noteService;
         }
+
+        [HttpPost]
+        [Route("add")]
+        public IActionResult AddNote([FromBody] Note note)
+        {
+            _noteService.AddNote(note);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("update")]
+        public IActionResult UpdateNote([FromBody] Note note)
+        {
+            _noteService.UpdateNote(note);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{noteId}")]
+        public IActionResult DeleteNote([FromRoute] int noteId)
+        {
+            _noteService.DeleteNote(noteId);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("{userId}")]
+        public IActionResult GetAllNotes ([FromRoute] int userId)
+        {
+            var allNotes=_noteService.GetAllNotes(userId);
+            return Ok(allNotes);
+        }
+
+
+
     }
+
 }

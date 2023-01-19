@@ -49,8 +49,19 @@ options.UseSqlServer(
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<INoteRepository, NoteRepository>();
+            services.AddTransient<INoteService, NoteService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            #endregion           
+            #endregion  
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +84,7 @@ options.UseSqlServer(
             {
                 endpoints.MapControllers();
             });
+            app.UseCors();
         }
     }
 }

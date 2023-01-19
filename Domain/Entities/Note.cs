@@ -11,7 +11,7 @@ namespace Domain.Entities
     public class Note
     {
         [Key]
-        public int nopteId { get; set; }
+        public int noteId { get; set; }
         public string header { get; set; }
 
         public string description { get; set; }

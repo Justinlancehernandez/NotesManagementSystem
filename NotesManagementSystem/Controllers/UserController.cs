@@ -54,7 +54,7 @@ namespace NotesManagementSystem.Controllers
             var logInUser = _userService.LogInUser(user.userName, user.password);
             if (logInUser != null)
             {
-                return Ok("You are Already Log In :) ");
+                return Ok(logInUser);
             }
 
             else return BadRequest("Invalid Username And Password");
