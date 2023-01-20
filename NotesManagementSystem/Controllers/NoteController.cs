@@ -47,10 +47,18 @@ namespace NotesManagementSystem.Controllers
         }
 
         [HttpGet]
-        [Route("{userId}")]
+        [Route("all/{userId}")]
         public IActionResult GetAllNotes ([FromRoute] int userId)
         {
             var allNotes=_noteService.GetAllNotes(userId);
+            return Ok(allNotes);
+        }
+
+        [HttpGet]
+        [Route("{userId}")]
+        public IActionResult GetNoteById([FromRoute] int userId)
+        {
+            var allNotes = _noteService.GetNoteById(userId);
             return Ok(allNotes);
         }
 

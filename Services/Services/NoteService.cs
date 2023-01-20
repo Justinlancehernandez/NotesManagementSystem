@@ -54,5 +54,11 @@ namespace Services.Services
         {
             return _unitOfWork.Notes.GetAll().Where(note => note.userId == userId);
         }
+        public Note GetNoteById(int noteId)
+        {
+            var getNote = _unitOfWork.Notes.GetById(noteId);
+            return getNote;
+
+        }
     }
 }

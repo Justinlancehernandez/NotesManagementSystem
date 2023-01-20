@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿ using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,8 @@ namespace Services.Interfaces
         Note UpdateNote(Note note);
         void DeleteNote(int noteId);
         IEnumerable<Note> GetAllNotes(int userId);
+
+        Note GetNoteById(int noteId);
 
     }
 }

@@ -73,7 +73,7 @@ options.UseSqlServer(
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotesManagementSystem v1"));
             }
-
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -84,7 +84,7 @@ options.UseSqlServer(
             {
                 endpoints.MapControllers();
             });
-            app.UseCors();
+            
         }
     }
 }
